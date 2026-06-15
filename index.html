@@ -1,1 +1,601 @@
-<span>IF you are seeing this, I havent published the site yet. Wait like 5 minutes.</span><title>not-published</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2055 Project — Living at the Edge of Tomorrow · Khizar &amp; Benin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F1ECDE;
+    --paper-2:#EAE3D1;
+    --ink:#23201A;
+    --ink-soft:#5A5648;
+    --rule:#C9C0AB;
+    --vermilion:#D8431F;     /* brand pop — the rising sun */
+    --green:#2F6138;         /* Grounded */
+    --ochre:#9C6411;         /* Plausible */
+    --slate:#4E6076;         /* Speculative */
+    --green-bg:#E3E7D6;
+    --ochre-bg:#EFE4CB;
+    --slate-bg:#DFE3E6;
+    --display:"Bricolage Grotesque", system-ui, sans-serif;
+    --serif:"Newsreader", Georgia, serif;
+    --maxw:1120px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;background:var(--paper);color:var(--ink);
+    font-family:var(--serif);font-size:18px;line-height:1.6;font-weight:400;
+    -webkit-font-smoothing:antialiased;overflow-x:hidden;position:relative;
+  }
+  /* paper grain */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:1;pointer-events:none;opacity:.055;mix-blend-mode:multiply;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='180' height='180'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+  }
+  ::selection{background:var(--vermilion);color:#fff;}
+  a{color:inherit;text-decoration:none;}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 32px;position:relative;z-index:2;}
+  .rule-t{border-top:1.5px solid var(--ink);}
+  .hair{border-top:1px solid var(--rule);}
+
+  /* labels */
+  .label{font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:.18em;text-transform:uppercase;}
+  .ink-soft{color:var(--ink-soft);}
+
+  /* ---------- confidence tag ---------- */
+  .conf{font-family:var(--display);font-weight:600;font-size:11px;letter-spacing:.13em;text-transform:uppercase;display:inline-flex;align-items:center;gap:7px;white-space:nowrap;}
+  .conf i{width:9px;height:9px;border-radius:2px;display:inline-block;flex:none;}
+  .t-g .conf,.conf.t-g{color:var(--green);} .t-g .conf i,.conf.t-g i{background:var(--green);}
+  .t-p .conf,.conf.t-p{color:var(--ochre);} .t-p .conf i,.conf.t-p i{background:var(--ochre);}
+  .t-s .conf,.conf.t-s{color:var(--slate);} .t-s .conf i,.conf.t-s i{background:var(--slate);}
+
+  /* ---------- nav ---------- */
+  header.nav{position:fixed;top:0;left:0;right:0;z-index:40;background:rgba(241,236,222,.86);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border-bottom:1px solid transparent;transition:border-color .3s;}
+  header.nav.scrolled{border-bottom-color:var(--ink);}
+  .nav-in{max-width:var(--maxw);margin:0 auto;padding:13px 32px;display:flex;align-items:center;justify-content:space-between;}
+  .brand{font-family:var(--display);font-weight:800;font-size:14px;letter-spacing:.04em;display:flex;align-items:center;gap:9px;}
+  .brand .sun{width:14px;height:14px;border-radius:50%;background:var(--vermilion);display:inline-block;}
+  nav.links{display:flex;gap:26px;}
+  nav.links a{font-family:var(--display);font-weight:600;font-size:12.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);padding:4px 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;}
+  nav.links a:hover{color:var(--ink);}
+  nav.links a.active{color:var(--ink);border-bottom-color:var(--vermilion);}
+  .menu-btn{display:none;background:none;border:0;color:var(--ink);cursor:pointer;padding:6px;}
+
+  /* ---------- masthead ---------- */
+  .masthead{padding:104px 0 56px;}
+  .edition{display:flex;justify-content:space-between;align-items:baseline;padding:12px 0;gap:16px;flex-wrap:wrap;}
+  .nameplate{font-family:var(--display);font-weight:800;line-height:.92;letter-spacing:-.02em;font-size:clamp(52px,11.5vw,150px);margin:18px 0 0;text-wrap:balance;}
+  .nameplate .l2{color:var(--vermilion);}
+  .mast-lower{display:grid;grid-template-columns:1.35fr .9fr;gap:40px;align-items:end;margin-top:26px;}
+  .deck{font-family:var(--serif);font-size:clamp(19px,2.1vw,23px);line-height:1.45;max-width:34ch;margin:0;color:var(--ink);}
+  .byline{font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.04em;margin-top:20px;color:var(--ink-soft);}
+  .byline b{color:var(--ink);}
+  .sun-emblem{justify-self:end;width:100%;max-width:340px;}
+  .contents{display:flex;gap:0;margin-top:46px;}
+  .contents .ci{flex:1;padding:18px 0 4px;border-top:1.5px solid var(--ink);}
+  .contents .ci .n{font-family:var(--display);font-weight:800;font-size:clamp(30px,4vw,46px);line-height:1;display:block;}
+  .contents .ci .t{font-family:var(--display);font-weight:600;font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--ink-soft);margin-top:8px;display:block;}
+
+  /* ---------- section frame ---------- */
+  section.sec{padding:72px 0;}
+  .sec-head{display:flex;align-items:baseline;gap:16px;padding-top:14px;margin-bottom:8px;}
+  .sec-kicker{font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--vermilion);}
+  .sec-kicker .num{color:var(--ink-soft);margin-right:10px;}
+  h2.sec-title{font-family:var(--display);font-weight:800;font-size:clamp(30px,4.4vw,52px);line-height:1.02;letter-spacing:-.015em;margin:14px 0 16px;max-width:18ch;}
+  .sec-intro{font-family:var(--serif);font-size:clamp(18px,1.7vw,20px);line-height:1.5;max-width:58ch;margin:0 0 8px;}
+  .sec-intro b{font-weight:500;}
+  em.acc{font-style:italic;color:var(--vermilion);}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s ease;}
+  .reveal.in{opacity:1;transform:none;}
+
+  /* ---------- key (confidence legend) ---------- */
+  .key{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:30px;border-top:1.5px solid var(--ink);}
+  .key .k{padding:22px 26px 22px 0;border-right:1px solid var(--rule);}
+  .key .k:last-child{border-right:0;padding-right:0;}
+  .key .k:not(:first-child){padding-left:26px;}
+  .key .ktag{font-family:var(--display);font-weight:800;font-size:14px;letter-spacing:.1em;text-transform:uppercase;display:flex;align-items:center;gap:9px;margin-bottom:9px;}
+  .key .ktag i{width:13px;height:13px;border-radius:3px;display:inline-block;}
+  .key h3{font-family:var(--serif);font-weight:500;font-style:italic;font-size:20px;margin:0 0 5px;}
+  .key p{margin:0;font-size:16px;line-height:1.5;color:var(--ink-soft);}
+
+  /* ---------- chronology ---------- */
+  .chrono{margin-top:24px;border-top:1.5px solid var(--ink);}
+  .chrono-row{display:grid;grid-template-columns:170px 1fr;gap:28px;padding:24px 0;border-bottom:1px solid var(--rule);align-items:start;}
+  .chrono-year{font-family:var(--display);font-weight:800;font-size:clamp(22px,2.5vw,30px);line-height:1;letter-spacing:-.01em;}
+  .chrono-year .now{display:block;font-family:var(--display);font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--vermilion);margin-top:7px;}
+  .chrono-body h3{font-family:var(--serif);font-weight:500;font-size:clamp(20px,2.4vw,26px);line-height:1.12;margin:0 0 7px;}
+  .chrono-body p{margin:0 0 12px;font-size:16.5px;line-height:1.5;color:var(--ink-soft);max-width:62ch;}
+
+  /* ---------- forecast catalog ---------- */
+  .tabs-wrap{margin-top:30px;}
+  .tabs{display:flex;flex-wrap:wrap;gap:7px 22px;align-items:baseline;padding:14px 0;}
+  .tabs .tg-label{font-family:var(--display);font-weight:800;font-size:11px;letter-spacing:.15em;text-transform:uppercase;color:var(--ink-soft);margin-right:4px;}
+  .tab{font-family:var(--display);font-weight:600;font-size:13.5px;letter-spacing:.02em;background:none;border:0;cursor:pointer;color:var(--ink-soft);padding:3px 0;border-bottom:2px solid transparent;transition:color .2s,border-color .2s;}
+  .tab:hover{color:var(--ink);}
+  .tab.on{color:var(--ink);border-bottom-color:var(--vermilion);}
+  .tab.on[data-tier="g"]{border-bottom-color:var(--green);color:var(--green);}
+  .tab.on[data-tier="p"]{border-bottom-color:var(--ochre);color:var(--ochre);}
+  .tab.on[data-tier="s"]{border-bottom-color:var(--slate);color:var(--slate);}
+  .tally{font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-soft);padding:4px 0 0;}
+
+  .catalog{display:grid;grid-template-columns:repeat(3,1fr);border-top:1.5px solid var(--ink);border-left:1px solid var(--ink);margin-top:14px;}
+  .entry{border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:22px 22px 20px;background:var(--paper);transition:background .18s ease,color .18s ease;display:flex;flex-direction:column;min-height:230px;}
+  .entry.hide{display:none;}
+  .entry-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:14px;}
+  .entry .topic{font-family:var(--display);font-weight:600;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);}
+  .entry h3{font-family:var(--serif);font-weight:500;font-size:23px;line-height:1.1;margin:0 0 9px;letter-spacing:-.01em;}
+  .entry p{margin:0;font-size:15.5px;line-height:1.5;color:var(--ink-soft);}
+  .entry:hover{background:var(--ink);color:var(--paper);}
+  .entry:hover .topic,.entry:hover p{color:#C9C0AB;}
+  .entry:hover .conf{color:var(--paper)!important;}
+  .entry:hover .conf i{outline:1px solid var(--paper);}
+  .empty{grid-column:1/-1;text-align:center;color:var(--ink-soft);font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;padding:46px 0;border-right:1px solid var(--ink);border-bottom:1px solid var(--ink);}
+
+  /* ---------- diary (a day) ---------- */
+  .diary{margin-top:24px;border-top:1.5px solid var(--ink);}
+  .day-row{display:grid;grid-template-columns:160px 1fr;gap:28px;padding:26px 0;border-bottom:1px solid var(--rule);align-items:start;}
+  .day-time{font-family:var(--display);font-weight:800;font-size:clamp(24px,2.8vw,34px);line-height:1;letter-spacing:-.01em;}
+  .day-time span{display:block;font-family:var(--display);font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-top:8px;}
+  .day-body h3{font-family:var(--serif);font-weight:500;font-style:italic;font-size:clamp(22px,2.6vw,28px);line-height:1.1;margin:0 0 9px;}
+  .day-body p{margin:0 0 12px;font-size:16.5px;line-height:1.55;max-width:64ch;}
+
+  /* ---------- ledger (two futures) ---------- */
+  .ledger{display:grid;grid-template-columns:1fr 1fr;margin-top:26px;border-top:1.5px solid var(--ink);}
+  .col{padding:24px 0;}
+  .col.bright{padding-right:40px;border-right:1px solid var(--ink);}
+  .col.hard{padding-left:40px;}
+  .col-h{font-family:var(--display);font-weight:800;font-size:clamp(20px,2.2vw,26px);letter-spacing:-.01em;margin:0 0 4px;display:flex;align-items:center;gap:11px;}
+  .col-h .mk{font-family:var(--display);font-weight:800;width:26px;height:26px;display:grid;place-items:center;border-radius:50%;font-size:16px;flex:none;}
+  .col.bright .mk{background:var(--green);color:var(--paper);}
+  .col.hard .mk{background:var(--vermilion);color:var(--paper);}
+  .col-sub{font-family:var(--serif);font-style:italic;color:var(--ink-soft);font-size:16px;margin:0 0 6px;}
+  .fitem{padding:18px 0;border-bottom:1px solid var(--rule);}
+  .fitem:last-child{border-bottom:0;}
+  .fitem h4{font-family:var(--serif);font-weight:500;font-size:19px;margin:0 0 4px;}
+  .fitem p{margin:0;font-size:15.5px;line-height:1.5;color:var(--ink-soft);}
+
+  /* ---------- comparison (then & now) ---------- */
+  .compare{margin-top:26px;border-top:1.5px solid var(--ink);}
+  .compare-head{display:grid;grid-template-columns:150px 1fr 1fr;gap:28px;padding:15px 0 14px;border-bottom:1px solid var(--rule);}
+  .compare-head .eh{font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.13em;text-transform:uppercase;line-height:1.1;}
+  .compare-head .eh .yr{display:block;font-family:var(--serif);font-style:italic;font-weight:400;font-size:14px;letter-spacing:0;text-transform:none;color:var(--ink-soft);margin-top:5px;}
+  .compare-head .eh.then{color:var(--ink-soft);}
+  .compare-head .eh.next{color:var(--vermilion);}
+  .crow{display:grid;grid-template-columns:150px 1fr 1fr;gap:28px;padding:20px 0;border-bottom:1px solid var(--rule);align-items:start;}
+  .crow:last-child{border-bottom:0;}
+  .crow .theme{font-family:var(--display);font-weight:800;font-size:13px;letter-spacing:.12em;text-transform:uppercase;line-height:1.15;}
+  .crow .cell p{margin:0;font-size:15.5px;line-height:1.5;}
+  .crow .cell.then p{color:var(--ink-soft);}
+  .crow .cell.next{padding-left:22px;border-left:1px solid var(--rule);}
+  .crow .cell .era{display:none;}
+
+  /* ---------- colophon (closing) ---------- */
+  .colophon{padding:84px 0 64px;}
+  .colophon .big{font-family:var(--display);font-weight:800;font-size:clamp(30px,5.2vw,64px);line-height:1.02;letter-spacing:-.02em;max-width:20ch;margin:24px 0 22px;}
+  .colophon .big em{font-style:normal;color:var(--vermilion);}
+  .colophon .k{font-family:var(--serif);font-size:19px;line-height:1.5;max-width:52ch;color:var(--ink-soft);margin:0;}
+
+  footer{border-top:1.5px solid var(--ink);}
+  footer .wrap{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;padding-top:24px;padding-bottom:36px;font-family:var(--display);font-weight:600;font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);}
+  footer .wrap b{color:var(--ink);}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:880px){
+    nav.links{display:none;}
+    .menu-btn{display:block;}
+    .mast-lower{grid-template-columns:1fr;gap:26px;}
+    .sun-emblem{justify-self:start;max-width:240px;}
+    .contents{flex-direction:column;}
+    .contents .ci{padding:14px 0;}
+    .catalog{grid-template-columns:1fr;border-left:1px solid var(--ink);}
+    .ledger{grid-template-columns:1fr;}
+    .col.bright{padding-right:0;border-right:0;border-bottom:1px solid var(--ink);}
+    .col.hard{padding-left:0;}
+    .chrono-row,.day-row{grid-template-columns:1fr;gap:8px;}
+    .compare-head{display:none;}
+    .crow{grid-template-columns:1fr;gap:6px;padding:22px 0;}
+    .crow .theme{color:var(--vermilion);margin-bottom:4px;}
+    .crow .cell.next{padding-left:0;border-left:0;margin-top:10px;}
+    .crow .cell .era{display:block;font-family:var(--display);font-weight:800;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:4px;}
+    .crow .cell.next .era{color:var(--vermilion);}
+    .key{grid-template-columns:1fr;}
+    .key .k{border-right:0;border-bottom:1px solid var(--rule);padding:18px 0!important;}
+    .key .k:last-child{border-bottom:0;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important;scroll-behavior:auto!important;}
+    .reveal{opacity:1;transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="nav-in">
+    <a class="brand" href="#top"><span class="sun"></span>2055</a>
+    <nav class="links" id="navlinks">
+      <a href="#key">The Key</a>
+      <a href="#chrono">Chronology</a>
+      <a href="#forecast">Forecasts</a>
+      <a href="#day">A Day</a>
+      <a href="#futures">Two Futures</a>
+      <a href="#history">Then &amp; Now</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Jump to forecasts">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+  </div>
+</header>
+
+<!-- ===== MASTHEAD ===== -->
+<div class="masthead" id="top">
+  <div class="wrap">
+    <div class="edition rule-t">
+      <span class="label ink-soft">2055 &nbsp;·&nbsp; A forecast</span>
+      <span class="label ink-soft">2026 &nbsp;→&nbsp; 2055</span>
+    </div>
+    <h1 class="nameplate">Living at the<br><span class="l2">Edge of Tomorrow</span></h1>
+    <div class="mast-lower">
+      <div>
+        <p class="deck">A field guide to what technology and daily life could be like in 2055. Not wild guesses — just where today's real trends are already heading.</p>
+        <p class="byline">A project by <b>Khizar &amp; Benin</b></p>
+      </div>
+      <svg class="sun-emblem" viewBox="0 0 340 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+        <path d="M120 120 A 50 50 0 0 1 220 120 Z" fill="#D8431F"/>
+        <line x1="170" y1="120" x2="170" y2="36" stroke="#23201A" stroke-width="2"/>
+        <line x1="219.1" y1="101.5" x2="241.9" y2="94.0" stroke="#23201A" stroke-width="2"/>
+        <line x1="208.6" y1="74.0" x2="224.0" y2="55.7" stroke="#23201A" stroke-width="2"/>
+        <line x1="219.1" y1="85.6" x2="238.8" y2="71.8" stroke="#23201A" stroke-width="2"/>
+        <line x1="131.4" y1="74.0" x2="116.0" y2="55.7" stroke="#23201A" stroke-width="2"/>
+        <line x1="120.9" y1="85.6" x2="101.2" y2="71.8" stroke="#23201A" stroke-width="2"/>
+        <line x1="120.9" y1="101.5" x2="98.1" y2="94.0" stroke="#23201A" stroke-width="2"/>
+        <line x1="20" y1="120" x2="320" y2="120" stroke="#23201A" stroke-width="2"/>
+      </svg>
+    </div>
+    <div class="contents">
+      <div class="ci"><span class="n">21</span><span class="t">Forecasts</span></div>
+      <div class="ci"><span class="n">10</span><span class="t">Milestones ahead</span></div>
+      <div class="ci"><span class="n">1</span><span class="t">Ordinary day</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== THE KEY ===== -->
+<section class="sec" id="key">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-kicker"><span class="num">01</span>How to read this almanac</span></div>
+    <h2 class="sec-title reveal">Every idea, rated by how <em class="acc">likely</em> it is.</h2>
+    <p class="sec-intro reveal">Lots of people guess about the future, but they are mostly just hoping. We did it another way. <b>Every idea here gets a rating for how likely it is</b> — already happening, a good bet, or a big maybe. No magic, no flying cars.</p>
+    <div class="key reveal">
+      <div class="k t-g">
+        <div class="ktag"><i></i>Grounded</div>
+        <h3>Already happening</h3>
+        <p>This has started. Unless something big goes wrong, it keeps going.</p>
+      </div>
+      <div class="k t-p">
+        <div class="ktag"><i></i>Plausible</div>
+        <h3>A good bet</h3>
+        <p>The science and the money add up. It needs time, but it makes sense.</p>
+      </div>
+      <div class="k t-s">
+        <div class="ktag"><i></i>Speculative</div>
+        <h3>A long shot</h3>
+        <p>It could happen, and it would be cool. But don't count on the timing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CHRONOLOGY ===== -->
+<section class="sec" id="chrono">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-kicker"><span class="num">02</span>The road there</span></div>
+    <h2 class="sec-title reveal">Thirty years, step by step</h2>
+    <p class="sec-intro reveal">Getting to 2055 is not one big jump. It is a lot of small steps. Here is one likely path, with each step rated.</p>
+    <div class="chrono" id="chronoList"></div>
+  </div>
+</section>
+
+<!-- ===== FORECASTS ===== -->
+<section class="sec" id="forecast">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-kicker"><span class="num">03</span>The forecasts</span></div>
+    <h2 class="sec-title reveal">Twenty-one ideas for life in 2055</h2>
+    <p class="sec-intro reveal">Based on real trends in chips, AI, space, medicine, and cities. <b>Sort them</b> by how likely they are, or by topic.</p>
+    <div class="tabs-wrap reveal">
+      <div class="tabs" id="tierTabs">
+        <span class="tg-label">Likelihood</span>
+        <button class="tab on" data-filter="tier" data-val="all">All</button>
+        <button class="tab" data-filter="tier" data-tier="g" data-val="g">Grounded</button>
+        <button class="tab" data-filter="tier" data-tier="p" data-val="p">Plausible</button>
+        <button class="tab" data-filter="tier" data-tier="s" data-val="s">Speculative</button>
+      </div>
+      <div class="tabs" id="catTabs" style="padding-top:0;">
+        <span class="tg-label">Topic</span>
+        <button class="tab on" data-filter="cat" data-val="all">All</button>
+        <button class="tab" data-filter="cat" data-val="silicon">Silicon</button>
+        <button class="tab" data-filter="cat" data-val="ai">Intelligence</button>
+        <button class="tab" data-filter="cat" data-val="space">Off-World</button>
+        <button class="tab" data-filter="cat" data-val="body">Medicine</button>
+        <button class="tab" data-filter="cat" data-val="city">Cities</button>
+        <button class="tab" data-filter="cat" data-val="society">Society</button>
+      </div>
+      <p class="tally" id="tally"></p>
+    </div>
+    <div class="catalog" id="catalog"></div>
+  </div>
+</section>
+
+<!-- ===== A DAY ===== -->
+<section class="sec" id="day">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-kicker"><span class="num">04</span>Ground level</span></div>
+    <h2 class="sec-title reveal">A day in the life, 2055</h2>
+    <p class="sec-intro reveal">Big ideas can feel far away. A normal day does not. Here is one regular day for an average person — every part comes straight from the forecasts.</p>
+    <div class="diary" id="diary"></div>
+  </div>
+</section>
+
+<!-- ===== TWO FUTURES ===== -->
+<section class="sec" id="futures">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-kicker"><span class="num">05</span>The honest part</span></div>
+    <h2 class="sec-title reveal">Two futures, at the same time</h2>
+    <p class="sec-intro reveal">A fair look ahead shows the bad with the good. The same changes that help us can also cause problems — and both are coming.</p>
+    <div class="ledger">
+      <div class="col bright">
+        <h3 class="col-h"><span class="mk">+</span>What goes right</h3>
+        <p class="col-sub">The wins worth working toward.</p>
+        <div id="futUp"></div>
+      </div>
+      <div class="col hard">
+        <h3 class="col-h"><span class="mk">!</span>What we'll wrestle with</h3>
+        <p class="col-sub">The costs we'll have to manage.</p>
+        <div id="futDown"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== THEN & NOW (INDUSTRIAL REVOLUTION) ===== -->
+<section class="sec" id="history">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-kicker"><span class="num">06</span>We've seen this before</span></div>
+    <h2 class="sec-title reveal">We've lived through a shift this <em class="acc">big</em> before.</h2>
+    <p class="sec-intro reveal">The last time technology remade everyday life this completely was the <b>Industrial Revolution</b>. It brought huge progress — and real problems that took a century to clean up. The same pattern is showing up again. The big difference is speed.</p>
+    <div class="compare reveal">
+      <div class="compare-head">
+        <div class="spacer"></div>
+        <div class="eh then">The Industrial Revolution<span class="yr">about 1760 – 1900</span></div>
+        <div class="eh next">This shift<span class="yr">2026 → 2055</span></div>
+      </div>
+      <div class="crow">
+        <div class="theme">Work</div>
+        <div class="cell then"><span class="era">Industrial Revolution</span><p>Machines and factories took over jobs once done by hand. It felt threatening at first — but whole new kinds of work appeared.</p></div>
+        <div class="cell next"><span class="era">2026 → 2055</span><p>AI and robots take over routine and dangerous tasks. People shift to checking, deciding, and guiding the work.</p></div>
+      </div>
+      <div class="crow">
+        <div class="theme">Cities</div>
+        <div class="cell then"><span class="era">Industrial Revolution</span><p>People rushed to cities for factory jobs. Towns swelled into crowded cities in a single lifetime.</p></div>
+        <div class="cell next"><span class="era">2026 → 2055</span><p>Cities run out of room and grow up into towers and down underground as more people pack in.</p></div>
+      </div>
+      <div class="crow">
+        <div class="theme">Health</div>
+        <div class="cell then"><span class="era">Industrial Revolution</span><p>Crowded, dirty cities spread disease first. Better medicine and far longer lives came only later.</p></div>
+        <div class="cell next"><span class="era">2026 → 2055</span><p>Faster, closer care cuts early deaths — but pollution gets worse for a while before cleaner systems catch up.</p></div>
+      </div>
+      <div class="crow">
+        <div class="theme">The cost</div>
+        <div class="cell then"><span class="era">Industrial Revolution</span><p>Choking pollution, child labor, and a wide gap between factory owners and the workers below them.</p></div>
+        <div class="cell next"><span class="era">2026 → 2055</span><p>Less privacy, powerful tools in the wrong hands, and a rich-poor gap that keeps widening.</p></div>
+      </div>
+      <div class="crow">
+        <div class="theme">Speed</div>
+        <div class="cell then"><span class="era">Industrial Revolution</span><p>The change crept in slowly — well over a hundred years to fully reshape daily life.</p></div>
+        <div class="cell next"><span class="era">2026 → 2055</span><p>A change just as large, squeezed into about thirty years. That speed is the new part.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COLOPHON ===== -->
+<div class="colophon">
+  <div class="wrap rule-t">
+    <div class="sec-head reveal" style="padding-top:18px;"><span class="sec-kicker">2055</span></div>
+    <p class="big reveal">The future doesn't just show up. We <em>build</em> it, one real step at a time.</p>
+    <p class="k reveal">No magic needed. Just smaller chips, smarter medicine, and an honest look at where things are already going.</p>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span>The 2055 Almanac &nbsp;·&nbsp; <b>Living at the Edge of Tomorrow</b></span>
+    <span>A project by <b>Khizar &amp; Benin</b></span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  "use strict";
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var TIERLABEL={g:'Grounded',p:'Plausible',s:'Speculative'};
+  var CATLABEL={silicon:'Silicon & Devices',ai:'Intelligence',space:'Off-World',body:'Body & Medicine',city:'Cities & Movement',society:'You & Society'};
+
+  var DATA=[
+    {cat:'silicon',tier:'g',t:'Cheaper computer chips',d:'The chips inside phones, laptops and servers keep getting cheaper to make. So the same money buys far more power than it does today.'},
+    {cat:'silicon',tier:'p',t:'The $500 phone',d:'Better factories and cheaper parts push prices down. A phone that costs $1,000 today could drop to about half that.'},
+    {cat:'silicon',tier:'p',t:'Glasses replace the phone',d:'AR glasses get light, cheap and useful enough to wear all day. Slowly, they take over the jobs your phone does now.'},
+    {cat:'silicon',tier:'g',t:'Phones that think for themselves',d:'Helpful AI runs right on your phone for everyday tasks. The really big AI still runs on faraway servers.'},
+    {cat:'silicon',tier:'p',t:'A new kind of 3D printer',d:'New printers build objects inside a soft gel instead of stacking thin layers. They become the normal way to print at home.'},
+    {cat:'silicon',tier:'p',t:'Privacy costs extra',d:'As everything goes online, phones that truly protect your data cost more. People pick one: better specs, or better privacy.'},
+    {cat:'ai',tier:'g',t:'AI is a tool, not a boss',d:'Even strong AI still needs a person checking its work. It does the boring parts, but people make the real calls.'},
+    {cat:'ai',tier:'p',t:'The AI hype cools off',d:'The buzz settles and the field spreads out. Small teams, even one person, can build good AI, not just a few giant companies.'},
+    {cat:'ai',tier:'p',t:'More work runs on its own',d:'As AI gets better at thinking and long tasks, more people let it handle coding and routine jobs with less help.'},
+    {cat:'space',tier:'s',t:'Mining the Moon',d:'The Moon becomes a place to get rare metals. Early tries are starting, but doing it for real by 2055 is a big stretch.'},
+    {cat:'space',tier:'s',t:'Metals get way cheaper',d:'If space mining grows, metals like gold, titanium and tungsten could cost far less, changing what we can afford to build.'},
+    {cat:'space',tier:'s',t:'Launched by vacuum',d:'Machines that fling cargo into space using vacuum power get more common, since rocket fuel stays pricey.'},
+    {cat:'body',tier:'p',t:'Care comes to you',d:'Shorter waits and more local clinics make health care faster and better. Serious treatment is available close to home.'},
+    {cat:'body',tier:'p',t:'Medicine guided by tiny tools',d:'Tiny engineered helpers carry drugs straight to where they are needed, treating things that are hard to reach today.'},
+    {cat:'body',tier:'p',t:'Far fewer early deaths',d:'Faster, safer care could sharply cut deaths from causes we can prevent. One of the era\'s biggest quiet wins.'},
+    {cat:'body',tier:'p',t:'Bugs that eat plastic',d:'Special microbes break down plastic trash and turn it into something useful. Early versions already exist in labs.'},
+    {cat:'city',tier:'p',t:'Homes get expensive',d:'We may have endless materials, but not endless land. Prices climb, so builders push housing up into the sky and down underground.'},
+    {cat:'city',tier:'s',t:'Trains almost as fast as sound',d:'Underground trains get much faster. Top speeds close to the speed of sound are not just possible, but likely.'},
+    {cat:'city',tier:'p',t:'Machines take risky jobs',d:'AI and robots take over the most dangerous work, so fewer people get hurt or killed on the job.'},
+    {cat:'society',tier:'g',t:'Big tech gets bigger',d:'Companies like Google, Apple and Nvidia are still here, and reach into even more parts of daily life.'},
+    {cat:'society',tier:'p',t:'The rich-poor gap grows',d:'Even with so much wealth around, the distance between the richest and everyone else gets wider. It is a hard problem.'}
+  ];
+
+  var TIMELINE=[
+    {y:'2026',now:'Now',tier:'g',t:'Big AI lives in big servers',d:'The strongest AI runs in huge data centers. The first really useful AR glasses reach early fans.'},
+    {y:'Late 2027',tier:'g',t:'Chips hit about 1 nanometer',d:'Chip parts get about as small as they physically can. It is a turning point for the whole industry.'},
+    {y:'~2030',tier:'p',t:'Smart AI on every new phone',d:'Helpful AI comes built into phones. Video doctor visits and local clinics become normal.'},
+    {y:'~2033',tier:'p',t:'Glasses you can wear all day',d:'AR glasses are light and useful enough to wear all the time. Phone sales start to flatten out.'},
+    {y:'~2036',tier:'s',t:'First real Moon mining',d:'Early space mining starts pulling rare materials from the Moon. It is small, costly and closely watched.'},
+    {y:'~2039',tier:'p',t:'Microbes clean up plastic',d:'Special bacteria get used in big numbers to break down plastic trash and recover useful material.'},
+    {y:'~2043',tier:'p',t:'Cities grow up and down',d:'Crowded cities build tall towers and deep underground homes as land runs short.'},
+    {y:'~2047',tier:'s',t:'A super-fast train opens',d:'An underground line carries people at speeds close to the speed of sound between big cities.'},
+    {y:'~2051',tier:'s',t:'Space metals reach shops',d:'Metals mined from the Moon start to lower the price of things like titanium and gold.'},
+    {y:'2055',tier:'p',t:'A normal, but unusual day',d:'Glasses, AI helpers, longer lives, more connection, and a bigger rich-poor gap. The future, arrived.'}
+  ];
+
+  var DAY=[
+    {time:'06:40',label:'Wake up',t:'No screen to grab',d:'Your AR glasses on the nightstand show a quiet morning update. An AI on your phone already sorted last night\'s messages. The day just starts, no scrolling.',tier:'g'},
+    {time:'08:05',label:'Commute',t:'Faster below, taller above',d:'A packed train moves quicker than any train from the 2020s. Above it, the city has grown up and down, because land never did get cheaper.',tier:'p'},
+    {time:'11:20',label:'Work',t:'AI writes, a person decides',d:'AI writes, codes and sums things up all morning. But a person still checks the work. The boring parts are automatic. The choices are still yours.',tier:'g'},
+    {time:'15:00',label:'Health',t:'A clinic down the street',d:'A short wait at a nearby clinic, then a treatment aimed right where it is needed. Care that once meant a hospital trip now happens close by.',tier:'p'},
+    {time:'19:30',label:'Evening',t:'Dinner, printed',d:'A meal forms from a gel cartridge. The new gadget is cheaper than before, some of its metal mined in space. The glasses dim. Privacy, the upgrade worth paying for, stays on.',tier:'s'}
+  ];
+
+  var FUTURES={
+    up:[
+      {h:'Fewer early deaths',p:'Faster, safer, easier care saves lives that long waits and gaps would lose today.'},
+      {h:'Machines do the dangerous jobs',p:'Risky work shifts to AI and robots, so fewer people get hurt.'},
+      {h:'School reaches more kids',p:'Learning becomes easy to get, no matter where you are born.'},
+      {h:'Space unlocks huge resources',p:'Mining beyond Earth opens up materials worth more than the whole world economy today.'},
+      {h:'Smarter health care',p:'Treatment gets better and faster, not just fancier.'},
+      {h:'Less crime where life improves',p:'Better schools and less poverty mean fewer reasons to commit crime.'}
+    ],
+    down:[
+      {h:'More pollution first',p:'Pollution gets worse for a while before cleaner systems catch up.'},
+      {h:'A wider rich-poor gap',p:'Even with lots of wealth, the gap between rich and poor grows.'},
+      {h:'Less privacy',p:'As AI gets everywhere, keeping your data private gets harder and costs more.'},
+      {h:'Strong tools in bad hands',p:'When AI is cheap and everywhere, bad actors can build it too.'},
+      {h:'Earth\'s resources shrink',p:'Materials found only on Earth keep running low, even as space mining slowly helps.'},
+      {h:'Crowded cities',p:'More people and packed cities put real pressure on homes and space.'}
+    ]
+  };
+
+  function el(t,c){var e=document.createElement(t);if(c)e.className=c;return e;}
+  function q(s){return document.querySelector(s);}
+  function confTag(tier){return '<span class="conf t-'+tier+'"><i></i>'+TIERLABEL[tier]+'</span>';}
+
+  // chronology
+  (function(){
+    var box=q('#chronoList');var f=document.createDocumentFragment();
+    TIMELINE.forEach(function(it){
+      var row=el('div','chrono-row t-'+it.tier);
+      var year='<div class="chrono-year">'+it.y+(it.now?'<span class="now">'+it.now+'</span>':'')+'</div>';
+      row.innerHTML=year+'<div class="chrono-body"><h3>'+it.t+'</h3><p>'+it.d+'</p>'+confTag(it.tier)+'</div>';
+      f.appendChild(row);
+    });
+    box.appendChild(f);
+  })();
+
+  // diary
+  (function(){
+    var box=q('#diary');var f=document.createDocumentFragment();
+    DAY.forEach(function(b){
+      var row=el('div','day-row t-'+b.tier);
+      row.innerHTML='<div class="day-time">'+b.time+'<span>'+b.label+'</span></div>'+
+        '<div class="day-body"><h3>'+b.t+'</h3><p>'+b.d+'</p>'+confTag(b.tier)+'</div>';
+      f.appendChild(row);
+    });
+    box.appendChild(f);
+  })();
+
+  // futures
+  (function(){
+    function fill(id,arr){
+      var box=q(id);var f=document.createDocumentFragment();
+      arr.forEach(function(it){
+        var d=el('div','fitem');d.innerHTML='<h4>'+it.h+'</h4><p>'+it.p+'</p>';f.appendChild(d);
+      });
+      box.appendChild(f);
+    }
+    fill('#futUp',FUTURES.up);fill('#futDown',FUTURES.down);
+  })();
+
+  // catalog
+  var entries=[];
+  (function(){
+    var box=q('#catalog');
+    DATA.forEach(function(p){
+      var a=el('article','entry t-'+p.tier);
+      a.setAttribute('data-tier',p.tier);a.setAttribute('data-cat',p.cat);
+      a.innerHTML='<div class="entry-top"><span class="topic">'+CATLABEL[p.cat]+'</span>'+confTag(p.tier)+'</div>'+
+        '<h3>'+p.t+'</h3><p>'+p.d+'</p>';
+      box.appendChild(a);entries.push(a);
+    });
+  })();
+
+  var aTier='all',aCat='all';
+  function applyFilter(){
+    var shown=0;
+    entries.forEach(function(a){
+      var okT=(aTier==='all'||a.getAttribute('data-tier')===aTier);
+      var okC=(aCat==='all'||a.getAttribute('data-cat')===aCat);
+      if(okT&&okC){a.classList.remove('hide');shown++;}else a.classList.add('hide');
+    });
+    var t=q('#tally');var bits=[];
+    if(aTier!=='all')bits.push(TIERLABEL[aTier]);
+    if(aCat!=='all')bits.push(CATLABEL[aCat]);
+    t.textContent='Showing '+shown+' of '+DATA.length+(bits.length?' — '+bits.join(' · '):' forecasts');
+  }
+  function wire(id,cb){
+    var box=q(id);
+    box.addEventListener('click',function(e){
+      var b=e.target.closest('.tab');if(!b)return;
+      box.querySelectorAll('.tab').forEach(function(x){x.classList.remove('on');});
+      b.classList.add('on');cb(b.getAttribute('data-val'));
+    });
+  }
+  wire('#tierTabs',function(v){aTier=v;applyFilter();});
+  wire('#catTabs',function(v){aCat=v;applyFilter();});
+  applyFilter();
+
+  // reveal
+  (function(){
+    var els=document.querySelectorAll('.reveal');
+    if(!('IntersectionObserver' in window)||reduce){els.forEach(function(e){e.classList.add('in');});return;}
+    var io=new IntersectionObserver(function(ents){
+      ents.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
+    },{threshold:.12,rootMargin:'0px 0px -6% 0px'});
+    els.forEach(function(e){io.observe(e);});
+  })();
+
+  // nav state + active link
+  (function(){
+    var nav=q('#nav');
+    var links=Array.prototype.slice.call(document.querySelectorAll('#navlinks a'));
+    var secs=links.map(function(a){return q(a.getAttribute('href'));});
+    function onScroll(){
+      if(window.scrollY>24)nav.classList.add('scrolled');else nav.classList.remove('scrolled');
+      var pos=window.scrollY+window.innerHeight*0.3;var idx=-1;
+      for(var i=0;i<secs.length;i++){if(secs[i]&&secs[i].offsetTop<=pos)idx=i;}
+      links.forEach(function(a,i){a.classList.toggle('active',i===idx);});
+    }
+    window.addEventListener('scroll',onScroll,{passive:true});onScroll();
+    var mb=q('#menuBtn');if(mb)mb.addEventListener('click',function(){var f=q('#forecast');if(f)f.scrollIntoView({behavior:reduce?'auto':'smooth'});});
+  })();
+})();
+</script>
+</body>
+</html>
