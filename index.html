@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2055 Project — Living at the Edge of Tomorrow · Khizar &amp; Benin</title>
+<title>2055 Project - Living at the Edge of Tomorrow · Khizar &amp; Benin</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
     --ink:#23201A;
     --ink-soft:#5A5648;
     --rule:#C9C0AB;
-    --vermilion:#D8431F;     /* brand pop — the rising sun */
+    --vermilion:#D8431F;     /* brand pop - the rising sun */
     --green:#2F6138;         /* Grounded */
     --ochre:#9C6411;         /* Plausible */
     --slate:#4E6076;         /* Speculative */
@@ -177,6 +177,14 @@
   .crow .cell.next{padding-left:22px;border-left:1px solid var(--rule);}
   .crow .cell .era{display:none;}
 
+  /* ---------- reflection (makers' note) ---------- */
+  .reflect{margin-top:18px;border-left:2px solid var(--vermilion);padding-left:30px;max-width:64ch;}
+  .reflect p{font-family:var(--serif);font-size:clamp(18px,1.8vw,21px);line-height:1.62;margin:0 0 18px;}
+  .reflect p:first-child{font-style:italic;color:var(--ink);}
+  .reflect p:last-of-type{margin-bottom:0;}
+  .sign{font-family:var(--display);font-weight:600;font-size:13px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-soft);margin-top:26px;}
+  .sign b{color:var(--ink);}
+
   /* ---------- colophon (closing) ---------- */
   .colophon{padding:84px 0 64px;}
   .colophon .big{font-family:var(--display);font-weight:800;font-size:clamp(30px,5.2vw,64px);line-height:1.02;letter-spacing:-.02em;max-width:20ch;margin:24px 0 22px;}
@@ -206,6 +214,7 @@
     .crow .cell.next{padding-left:0;border-left:0;margin-top:10px;}
     .crow .cell .era{display:block;font-family:var(--display);font-weight:800;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:4px;}
     .crow .cell.next .era{color:var(--vermilion);}
+    .reflect{padding-left:20px;}
     .key{grid-template-columns:1fr;}
     .key .k{border-right:0;border-bottom:1px solid var(--rule);padding:18px 0!important;}
     .key .k:last-child{border-bottom:0;}
@@ -228,6 +237,7 @@
       <a href="#day">A Day</a>
       <a href="#futures">Two Futures</a>
       <a href="#history">Then &amp; Now</a>
+      <a href="#reflect">Reflection</a>
     </nav>
     <button class="menu-btn" id="menuBtn" aria-label="Jump to forecasts">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
@@ -245,7 +255,7 @@
     <h1 class="nameplate">Living at the<br><span class="l2">Edge of Tomorrow</span></h1>
     <div class="mast-lower">
       <div>
-        <p class="deck">A prediction of what technology and daily life could be like in 2055.</p>
+        <p class="deck">A field guide to what technology and daily life could be like in 2055. Not wild guesses - just where today's real trends are already heading.</p>
         <p class="byline">A project by <b>Khizar &amp; Benin</b></p>
       </div>
       <svg class="sun-emblem" viewBox="0 0 340 150" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -273,7 +283,7 @@
   <div class="wrap">
     <div class="sec-head reveal"><span class="sec-kicker"><span class="num">01</span>How to read this almanac</span></div>
     <h2 class="sec-title reveal">Every idea, rated by how <em class="acc">likely</em> it is.</h2>
-    <p class="sec-intro reveal">Lots of people guess about the future, but they are mostly just hoping. We did it another way. <b>Every idea here gets a rating for how likely it is</b> — already happening, a good bet, or a big maybe. No magic, no flying cars.</p>
+    <p class="sec-intro reveal">Lots of people guess about the future, but they are mostly just hoping. We did it another way. <b>Every idea here gets a rating for how likely it is</b> - already happening, a good bet, or a big maybe. No magic, no flying cars.</p>
     <div class="key reveal">
       <div class="k t-g">
         <div class="ktag"><i></i>Grounded</div>
@@ -339,7 +349,7 @@
   <div class="wrap">
     <div class="sec-head reveal"><span class="sec-kicker"><span class="num">04</span>Ground level</span></div>
     <h2 class="sec-title reveal">A day in the life, 2055</h2>
-    <p class="sec-intro reveal">Big ideas can feel far away. A normal day does not. Here is one regular day for an average person — every part comes straight from the forecasts.</p>
+    <p class="sec-intro reveal">Big ideas can feel far away. A normal day does not. Here is one regular day for an average person - every part comes straight from the forecasts.</p>
     <div class="diary" id="diary"></div>
   </div>
 </section>
@@ -349,7 +359,7 @@
   <div class="wrap">
     <div class="sec-head reveal"><span class="sec-kicker"><span class="num">05</span>The honest part</span></div>
     <h2 class="sec-title reveal">Two futures, at the same time</h2>
-    <p class="sec-intro reveal">A fair look ahead shows the bad with the good. The same changes that help us can also cause problems — and both are coming.</p>
+    <p class="sec-intro reveal">A fair look ahead shows the bad with the good. The same changes that help us can also cause problems - and both are coming.</p>
     <div class="ledger">
       <div class="col bright">
         <h3 class="col-h"><span class="mk">+</span>What goes right</h3>
@@ -370,7 +380,7 @@
   <div class="wrap">
     <div class="sec-head reveal"><span class="sec-kicker"><span class="num">06</span>We've seen this before</span></div>
     <h2 class="sec-title reveal">We've lived through a shift this <em class="acc">big</em> before.</h2>
-    <p class="sec-intro reveal">The last time technology remade everyday life this completely was the <b>Industrial Revolution</b>. It brought huge progress — and real problems that took a century to clean up. The same pattern is showing up again. The big difference is speed.</p>
+    <p class="sec-intro reveal">The last time technology remade everyday life this completely was the <b>Industrial Revolution</b>. It brought huge progress - and real problems that took a century to clean up. The same pattern is showing up again. The big difference is speed.</p>
     <div class="compare reveal">
       <div class="compare-head">
         <div class="spacer"></div>
@@ -379,7 +389,7 @@
       </div>
       <div class="crow">
         <div class="theme">Work</div>
-        <div class="cell then"><span class="era">Industrial Revolution</span><p>Machines and factories took over jobs once done by hand. It felt threatening at first — but whole new kinds of work appeared.</p></div>
+        <div class="cell then"><span class="era">Industrial Revolution</span><p>Machines and factories took over jobs once done by hand. It felt threatening at first - but whole new kinds of work appeared.</p></div>
         <div class="cell next"><span class="era">2026 → 2055</span><p>AI and robots take over routine and dangerous tasks. People shift to checking, deciding, and guiding the work.</p></div>
       </div>
       <div class="crow">
@@ -390,7 +400,7 @@
       <div class="crow">
         <div class="theme">Health</div>
         <div class="cell then"><span class="era">Industrial Revolution</span><p>Crowded, dirty cities spread disease first. Better medicine and far longer lives came only later.</p></div>
-        <div class="cell next"><span class="era">2026 → 2055</span><p>Faster, closer care cuts early deaths — but pollution gets worse for a while before cleaner systems catch up.</p></div>
+        <div class="cell next"><span class="era">2026 → 2055</span><p>Faster, closer care cuts early deaths - but pollution gets worse for a while before cleaner systems catch up.</p></div>
       </div>
       <div class="crow">
         <div class="theme">The cost</div>
@@ -399,9 +409,22 @@
       </div>
       <div class="crow">
         <div class="theme">Speed</div>
-        <div class="cell then"><span class="era">Industrial Revolution</span><p>The change crept in slowly — well over a hundred years to fully reshape daily life.</p></div>
+        <div class="cell then"><span class="era">Industrial Revolution</span><p>The change crept in slowly - well over a hundred years to fully reshape daily life.</p></div>
         <div class="cell next"><span class="era">2026 → 2055</span><p>A change just as large, squeezed into about thirty years. That speed is the new part.</p></div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== REFLECTION ===== -->
+<section class="sec" id="reflect">
+  <div class="wrap">
+    <div class="sec-head reveal"><span class="sec-kicker"><span class="num">07</span>In our own words</span></div>
+    <h2 class="sec-title reveal">What we took away.</h2>
+    <div class="reflect reveal">
+      <p>When we started, we pictured 2055 as flying cars and robot butlers - the stuff of movies. The deeper we dug, the more ordinary, and the more real, it got.</p>
+      <p>Most of the future is already here in small pieces: cheaper chips, scans that catch illness sooner, AI quietly handling the dull parts of a job. The hardest habit to break was wanting every prediction to be exciting. Rating each idea by how likely it is forced us to be honest - to separate what is actually coming from what we were only hoping for. It also made us admit the uncomfortable part: the same tools that save lives can widen the gap between people and chip away at privacy.</p>
+      <p class="sign">Our reflection</p>
     </div>
   </div>
 </section>
@@ -557,7 +580,7 @@
     var t=q('#tally');var bits=[];
     if(aTier!=='all')bits.push(TIERLABEL[aTier]);
     if(aCat!=='all')bits.push(CATLABEL[aCat]);
-    t.textContent='Showing '+shown+' of '+DATA.length+(bits.length?' — '+bits.join(' · '):' forecasts');
+    t.textContent='Showing '+shown+' of '+DATA.length+(bits.length?' - '+bits.join(' · '):' forecasts');
   }
   function wire(id,cb){
     var box=q(id);
